@@ -11,9 +11,7 @@ sys.path.append(os.getcwd())
 
 API_TOKEN = bot_config.token_bot
 
-
 WEBHOOK_URL_PATH = "/%s/" % API_TOKEN
-
 
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
@@ -27,6 +25,11 @@ app = flask.Flask(__name__)
 @app.route('/', methods=['GET', 'HEAD'])
 def index():
     return 'bot works !!!'
+
+
+@app.route(WEBHOOK_URL_PATH, methods=['GET'])
+def get_token():
+    return 'GET - works'
 
 
 # Process webhook calls
