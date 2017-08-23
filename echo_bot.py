@@ -1,16 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+import os
 import flask
 import telebot
 import logging
 import bot_config
 
+sys.path.append(os.getcwd())
 
 API_TOKEN = bot_config.token_bot
 
 
-WEBHOOK_URL_PATH = "/%s/" % (API_TOKEN)
+WEBHOOK_URL_PATH = "/%s/" % API_TOKEN
 
 
 logger = telebot.logger
@@ -51,8 +54,3 @@ def send_welcome(message):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     bot.reply_to(message, message.text)
-
-
-
-
-
