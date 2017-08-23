@@ -6,6 +6,7 @@ import flask
 import telebot
 import logging
 import bot_config
+from telebot import types
 
 sys.path.append(os.getcwd())
 
@@ -37,7 +38,7 @@ def get_token():
 def webhook():
     if flask.request.headers.get('content-type') == 'application/json':
         json_string = flask.request.get_data().decode('utf-8')
-        update = telebot.types.Update.de_json(json_string)
+        update = types.Update.de_json(json_string)
         bot.process_new_updates([update])
         return ''
     else:
